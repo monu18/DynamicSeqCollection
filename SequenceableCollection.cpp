@@ -163,21 +163,45 @@ int SequenceableCollection::find(int x) const {
 
 // Removes the element at the specified index
 SequenceableCollection& SequenceableCollection::removeAt(int i) {
-    if (i < 0 || i > _end - _start) {
-        std::cout << "......Index is out of bounds....." << std::endl;
-        return *this;  // Do nothing if out of bounds
+     // Check if index i is within bounds
+    if (i < 0 || i >= _end - _start + 1) {
+        std::cout << "Index out of bounds. No element removed." << std::endl;
+        return *this;  // No action if index is out of bounds
     }
 
-    // Shift elements to the left to fill the gap left by the removed element
-    for (int j = _start + i; j < _end; ++j) {
-        region[j] = region[j + 1];
+    // Case 1: Removing the first element, just move _start up
+    if (i == 0) {
+        region[_start] = 0;  // Clear the first element
+        _start++;  // Move _start up to the next element
+    }
+    // Case 2: Removing the last element, just move _end down
+    else if (i == _end - _start) {
+        region[_end] = 0;  // Clear the last element
+        _end--;  // Move _end down to the previous element
+    }
+    // Case 3: Removing a middle element, so shift elements to fill the gap
+    else {
+        // Determine whether to shift left or right based on proximity to _start and _end
+        if (i <= (_end - _start) / 2) {
+            // Closer to _start, shift elements right to fill the gap
+            for (int j = _start + i; j > _start; --j) {
+                region[j] = region[j - 1];
+            }
+            region[_start] = 0;  // Clear the now-unused first position
+            _start++;  // Update _start to reflect the shift
+        } else {
+            // Closer to _end, shift elements left to fill the gap
+            for (int j = _start + i; j < _end; ++j) {
+                region[j] = region[j + 1];
+            }
+            region[_end] = 0;  // Clear the now-unused last position
+            _end--;  // Update _end to reflect the shift
+        }
     }
 
-    // Set the now-unused last element to 0
-    region[_end] = 0;
-
-    _end--;
+    // Update the size after removing the element
     _size--;
+
     return *this;
 }
 

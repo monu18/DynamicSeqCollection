@@ -46,6 +46,8 @@ void testFindFunction() {
     collection.insertAt(0, 10);
     collection.insertAt(1, 20);
     collection.insertAt(2, 30);
+    collection.insertAt(3, 30);
+
 
     std::cout << "\nTesting Find:\n" << std::endl;
 
@@ -70,9 +72,12 @@ void testRemoveFunction() {
 
     std::cout << "\nTesting Removal:\n" << std::endl;
 
+    std::cout << "Before removing any element:" << std::endl;
+    collection.printCollection();
+
     // Remove an element from the beginning
     collection.removeAt(0);
-    std::cout << "After removing element at index 0:" << std::endl;
+    std::cout << "After removing element at index 1:" << std::endl;
     collection.printCollection();
 
     // Remove an element from the middle
@@ -91,57 +96,57 @@ void testRemoveFunction() {
     collection.printCollection();
 }
 
-// void testIterateFunction() {
-//     SequenceableCollection collection;
-//     collection.insertAt(0, 5);
-//     collection.insertAt(1, 10);
-//     collection.insertAt(2, 15);
+void testIterateFunction() {
+    SequenceableCollection collection;
+    collection.insertAt(0, 5);
+    collection.insertAt(1, 10);
+    collection.insertAt(2, 15);
 
-//     std::cout << "\nTesting Iterate:\n" << std::endl;
-//     std::cout << "Original collection:" << std::endl;
-//     collection.printCollection();
+    std::cout << "\nTesting Iterate:\n" << std::endl;
+    std::cout << "Original collection:" << std::endl;
+    collection.printCollection();
 
-//     // Define a lambda to increment each element by 1
-//     auto incrementFunction = [](int x) { return x + 1; };
+    // Define a lambda to increment each element by 1
+    auto incrementFunction = [](int x) { return x + 1; };
 
-//     // Apply `iterate` with the increment function
-//     collection.iterate(incrementFunction);
+    // Apply `iterate` with the increment function
+    collection.iterate(incrementFunction);
 
-//     std::cout << "Collection after applying iterate with increment function:" << std::endl;
-//     collection.printCollection();
-// }
+    std::cout << "Collection after applying iterate with increment function:" << std::endl;
+    collection.printCollection();
+}
 
-// void testEdgeCases() {
-//     SequenceableCollection collection;
+void testEdgeCases() {
+    SequenceableCollection collection;
 
-//     std::cout << "\nTesting Edge Cases:\n" << std::endl;
+    std::cout << "\nTesting Edge Cases:\n" << std::endl;
 
-//     // Attempt insertion out of bounds
-//     collection.insertAt(-1, 50);
-//     collection.insertAt(10, 50);
+    // Attempt insertion out of bounds
+    collection.insertAt(-1, 50);
+    collection.insertAt(10, 50);
 
-//     // Attempt to remove from an empty collection
-//     collection.removeAt(0);
+    // Attempt to remove from an empty collection
+    collection.removeAt(0);
 
-//     // Print after invalid operations
-//     std::cout << "Collection after out-of-bounds operations:" << std::endl;
-//     collection.printCollection();
+    // Print after invalid operations
+    std::cout << "Collection after out-of-bounds operations:" << std::endl;
+    collection.printCollection();
 
-//     // Test iterate on an empty collection
-//     auto incrementFunction = [](int x) { return x + 1; };
-//     collection.iterate(incrementFunction);
+    // Test iterate on an empty collection
+    auto incrementFunction = [](int x) { return x + 1; };
+    collection.iterate(incrementFunction);
 
-//     std::cout << "Collection after applying iterate on an empty collection:" << std::endl;
-//     collection.printCollection();
-// }
+    std::cout << "Collection after applying iterate on an empty collection:" << std::endl;
+    collection.printCollection();
+}
 
 int main() {
     // Call each test case
-    testInsertFunction();
+    // testInsertFunction();
     // testFindFunction();
     // testRemoveFunction();
     // testIterateFunction();
-    // testEdgeCases();
+    testEdgeCases();
 
     std::cout << "All tests completed." << std::endl;
     return 0;
