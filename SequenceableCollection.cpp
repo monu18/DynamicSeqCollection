@@ -8,9 +8,6 @@ Default Constructor
 SequenceableCollection::SequenceableCollection() : _start(3), _end(2), _size(0), _basicSize(8) {
 
 	region = new int[_basicSize];     // Allocating initial capacity
-	for (int z = 0; z < _basicSize; z++) {
-		region[z] = 0;
-	}
 }
 
 /*
@@ -19,9 +16,10 @@ Copy Constructor
 SequenceableCollection::SequenceableCollection(const SequenceableCollection& sequenceableCollection)
     : _start(sequenceableCollection._start), _end(sequenceableCollection._end), _size(sequenceableCollection._size), _basicSize(sequenceableCollection._basicSize) {
     region = new int[_basicSize];
-    for (int i = 0; i < _basicSize; ++i) {
-        region[i] = sequenceableCollection.region[i];
-    }
+
+    for (int z = 0; z < _basicSize; z++) {
+		region[z] = sequenceableCollection.region[z];
+	}
 }
 
 /*
