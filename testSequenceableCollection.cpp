@@ -5,40 +5,40 @@ using namespace std;
 void testInsertFunction() {
     SequenceableCollection collection;
 
-    std::cout << "\nTesting Insertion:\n" << std::endl;
+    cout << "\nTesting Insertion:\n" << endl;
 
     // Insert at the beginning
     collection.insertAt(0, 5);
-    std::cout << "After inserting 5 at index 0:" << std::endl;
+    cout << "After inserting 5 at index 0:" << endl;
     collection.printCollection();
 
     // Insert at index 1 (should go right after the first element)
     collection.insertAt(1, 10);
-    std::cout << "After inserting 10 at index 1:" << std::endl;
+    cout << "After inserting 10 at index 1:" << endl;
     collection.printCollection();
 
     // Insert at the beginning again
     collection.insertAt(0, 15);
-    std::cout << "After inserting 15 at index 0:" << std::endl;
+    cout << "After inserting 15 at index 0:" << endl;
     collection.printCollection();
 
     // Insert in the middle
     collection.insertAt(1, 20);
-    std::cout << "After inserting 20 at index 1:" << std::endl;
+    cout << "After inserting 20 at index 1:" << endl;
     collection.printCollection();
 
     // Insert at the end
     collection.insertAt(4, 25);
-    std::cout << "After inserting 25 at index 4:" << std::endl;
+    cout << "After inserting 25 at index 4:" << endl;
     collection.printCollection();
 
     // Insert at a new position to test grow functionality
     for (int i = 5; i < 12; ++i) {
         collection.insertAt(i, i * 10);
-        std::cout << "After inserting "<< i*10<< " at index "<< i <<" :" << std::endl;
+        cout << "After inserting "<< i*10<< " at index "<< i <<" :" << endl;
         collection.printCollection();
     }
-    std::cout << "After inserting elements to trigger growth:" << std::endl;
+    cout << "After inserting elements to trigger growth:" << endl;
     collection.printCollection();
 }
 
@@ -50,18 +50,18 @@ void testFindFunction() {
     collection.insertAt(3, 30);
 
 
-    std::cout << "\nTesting Find:\n" << std::endl;
+    cout << "\nTesting Find:\n" << endl;
 
     // Find existing elements
     int index = collection.find(20);
-    std::cout << "Finding 20, expected index: 1, got: " << index << std::endl;
+    cout << "Finding 20, expected index: 1, got: " << index << endl;
 
     index = collection.find(30);
-    std::cout << "Finding 30, expected index: 2, got: " << index << std::endl;
+    cout << "Finding 30, expected index: 2, got: " << index << endl;
 
     // Attempt to find a non-existent element
     index = collection.find(40);
-    std::cout << "Finding 40, expected index: -1, got: " << index << std::endl;
+    cout << "Finding 40, expected index: -1, got: " << index << endl;
 }
 
 void testRemoveFunction() {
@@ -71,29 +71,29 @@ void testRemoveFunction() {
     collection.insertAt(2, 15);
     collection.insertAt(3, 20);
 
-    std::cout << "\nTesting Removal:\n" << std::endl;
+    cout << "\nTesting Removal:\n" << endl;
 
-    std::cout << "Before removing any element:" << std::endl;
+    cout << "Before removing any element:" << endl;
     collection.printCollection();
 
     // Remove an element from the beginning
     collection.removeAt(0);
-    std::cout << "After removing element at index 1:" << std::endl;
+    cout << "After removing element at index 1:" << endl;
     collection.printCollection();
 
     // Remove an element from the middle
     collection.removeAt(1);
-    std::cout << "After removing element at index 1:" << std::endl;
+    cout << "After removing element at index 1:" << endl;
     collection.printCollection();
 
     // Remove an element from the end
     collection.removeAt(1);
-    std::cout << "After removing element at index 1 (end):" << std::endl;
+    cout << "After removing element at index 1 (end):" << endl;
     collection.printCollection();
 
     // Attempt to remove an element out of bounds
     collection.removeAt(10);
-    std::cout << "After attempting to remove element at out-of-bounds index 10:" << std::endl;
+    cout << "After attempting to remove element at out-of-bounds index 10:" << endl;
     collection.printCollection();
 }
 
@@ -103,8 +103,8 @@ void testIterateFunction() {
     collection.insertAt(1, 10);
     collection.insertAt(2, 15);
 
-    std::cout << "\nTesting Iterate:\n" << std::endl;
-    std::cout << "Original collection:" << std::endl;
+    cout << "\nTesting Iterate:\n" << endl;
+    cout << "Original collection:" << endl;
     collection.printCollection();
 
     // Define a lambda to increment each element by 1
@@ -113,7 +113,7 @@ void testIterateFunction() {
     // Apply `iterate` with the increment function
     collection.iterate(incrementFunction);
 
-    std::cout << "Collection after applying iterate with increment function:" << std::endl;
+    cout << "Collection after applying iterate with increment function:" << endl;
     collection.printCollection();
 }
 
@@ -165,7 +165,7 @@ void testConstructorsAndDestructor() {
 void testEdgeCases() {
     SequenceableCollection collection;
 
-    std::cout << "\nTesting Edge Cases:\n" << std::endl;
+    cout << "\nTesting Edge Cases:\n" << endl;
 
     // Attempt insertion out of bounds
     collection.insertAt(-1, 50);
@@ -175,14 +175,14 @@ void testEdgeCases() {
     collection.removeAt(0);
 
     // Print after invalid operations
-    std::cout << "Collection after out-of-bounds operations:" << std::endl;
+    cout << "Collection after out-of-bounds operations:" << endl;
     collection.printCollection();
 
     // Test iterate on an empty collection
     auto incrementFunction = [](int x) { return x + 1; };
     collection.iterate(incrementFunction);
 
-    std::cout << "Collection after applying iterate on an empty collection:" << std::endl;
+    cout << "Collection after applying iterate on an empty collection:" << endl;
     collection.printCollection();
 }
 
@@ -195,6 +195,6 @@ int main() {
     testConstructorsAndDestructor();
     testEdgeCases();
 
-    std::cout << "All tests completed." << std::endl;
+    cout << "All tests completed." << endl;
     return 0;
 }
