@@ -41,7 +41,7 @@ Compilation Instructions
 
     2.	Compile the Code:
         Use the following command to compile the project, including both the implementation and test files. 
-        g++ -std=c++11 src/SequenceableCollection.cpp tests/testSequenceableCollection.cpp -o testSequenceableCollection
+        clang++ -std=c++11 SequenceableCollection.cpp testSequenceableCollection.cpp -o testSequenceableCollection
     This will generate an executable file named testSequenceableCollection.
 
 
