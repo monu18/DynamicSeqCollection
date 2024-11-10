@@ -10,15 +10,15 @@ This project implements a SequenceableCollection class in C++, designed to store
 1.	Dynamic Resizing: Starts with an initial capacity of 8 elements. When full, it doubles its capacity, copying over existing elements to maintain contiguous storage.
 2.	Contiguous Storage Requirement: Ensures that all elements are stored consecutively within the allocated memory region.
 3.	Efficient Insertions and Deletions: Supports inserting elements at any position and removing elements with minimal shifting.
-4.	Functionality:
+4.	Functionality:<br/>
     **•	basicSize():** Returns the total allocated capacity.<br/>
-    **•	size():** Returns the current number of elements stored in the collection.
-    **•	insertAt(int i, int x):** Inserts an integer x at position i, shifting elements as needed. If the array is full, it doubles the capacity before inserting.
-    **•	find(int x):** Returns the index of an integer x in the collection or -1 if not found.
-    **•	removeAt(int i):** Removes the element at position i, filling the gap by shifting elements.
-    **•	iterate(int (*fn)(int)):*** Applies a function fn to each element, replacing each element with the function’s return value.
+    **•	size():** Returns the current number of elements stored in the collection.<br/>
+    **•	insertAt(int i, int x):** Inserts an integer x at position i, shifting elements as needed. If the array is full, it doubles the capacity before inserting.<br/>
+    **•	find(int x):** Returns the index of an integer x in the collection or -1 if not found.<br/>
+    **•	removeAt(int i):** Removes the element at position i, filling the gap by shifting elements.<br/>
+    **•	iterate(int (*fn)(int)):*** Applies a function fn to each element, replacing each element with the function’s return value.<br/>
 5.	Constructors and Destructor:
-        •	Default, copy, and parameterized constructors are implemented.
+        •	Default, copy, and parameterized constructors are implemented.<br/>
         •	Destructor frees all allocated memory, preventing memory leaks.
 6.	Memory Management: The **grow()** method ensures efficient memory allocation, doubling the collection’s capacity only when necessary.
 
@@ -108,7 +108,6 @@ How to Use printCollection()
 	1.	Call printCollection() after Modifications:
 	•	After inserting, removing, or modifying elements, call printCollection() to verify that the collection’s internal state matches expectations.
 	2.	Example Usage:
-```cpp
         SequenceableCollection collection;
         collection.insertAt(0, 10).insertAt(1, 20).insertAt(2, 30);
         collection.printCollection();
@@ -116,7 +115,7 @@ How to Use printCollection()
         // After removing the element at index 1
         collection.removeAt(1);
         collection.printCollection();
-```
+        
 This example will first print the collection after three insertions, and then print the updated state after removing one element.
 
 
