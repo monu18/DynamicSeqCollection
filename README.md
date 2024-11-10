@@ -17,7 +17,7 @@ This project implements a SequenceableCollection class in C++, designed to store
     **•	find(int x):** Returns the index of an integer x in the collection or -1 if not found.<br/>
     **•	removeAt(int i):** Removes the element at position i, filling the gap by shifting elements.<br/>
     **•	iterate(int (*fn)(int)):*** Applies a function fn to each element, replacing each element with the function’s return value.<br/>
-5.	Constructors and Destructor:
+5.	Constructors and Destructor:<br/>
         •	Default, copy, and parameterized constructors are implemented.<br/>
         •	Destructor frees all allocated memory, preventing memory leaks.
 6.	Memory Management: The **grow()** method ensures efficient memory allocation, doubling the collection’s capacity only when necessary.
@@ -115,7 +115,7 @@ How to Use printCollection()
         // After removing the element at index 1
         collection.removeAt(1);
         collection.printCollection();
-        
+
 This example will first print the collection after three insertions, and then print the updated state after removing one element.
 
 
