@@ -62,13 +62,26 @@ SequenceableCollection& SequenceableCollection::insertAt(int i, int x) {
         _start = 3;  // Starting position as defined in project
         _end = _start;
         region[_start] = x;
-    } else if (i == 0 && _start > 0) {
-        // Insert at the beginning without shifting if there's space
-        _start--;
-        region[_start] = x;
+    } else if (i == 0) {
+        // Insert at the beginning
+        if (_start > 0) {
+            // Insert at the beginning without shifting if there's space
+            _start--;
+            region[_start] = x;
+        } else if (_end < _basicSize - 1) {
+            // Shift elements right to make space at the beginning
+            for (int j = _end; j >= _start; --j) {
+                region[j + 1] = region[j];
+            }
+            _end++;
+            region[_start] = x;
+        }
     } else if (i == _end - _start + 1) {
-        // Insert at the end
-        if (_end + 1 >= _basicSize && _start > 0) {
+        // Insert at the end without shifting if there's space
+        if (_end < _basicSize - 1) {
+            _end++;
+            region[_end] = x;
+        } else if (_start > 0) {
             // Shift everything left to make space if there's room at the start
             int shiftAmount = _start;
             for (int j = _start; j <= _end; ++j) {
@@ -76,18 +89,27 @@ SequenceableCollection& SequenceableCollection::insertAt(int i, int x) {
             }
             _end -= shiftAmount;
             _start = 0;
+            _end++;
+            region[_end] = x;
         }
-        // Insert x at the end
-        _end++;
-        region[_end] = x;
     } else {
         // Shift elements if inserting in the middle
         if (i <= (_end - _start) / 2) {
-            // Closer to _start, shift elements to the left
-            leftShift(i);
+            // Prefer shifting to the left if closer to the start
+            if (_start > 0) {
+                leftShift(i);
+            } else if (_end < _basicSize - 1) {
+                // If no space to shift left, fall back to shifting right
+                rightShift(i);
+            }
         } else {
-            // Closer to _end, shift elements to the right
-            rightShift(i);
+            // Prefer shifting to the right if closer to the end
+            if (_end < _basicSize - 1) {
+                rightShift(i);
+            } else if (_start > 0) {
+                // If no space to shift right, fall back to shifting left
+                leftShift(i);
+            }
         }
         // Insert x at the specified position
         region[_start + i] = x;
@@ -101,36 +123,30 @@ SequenceableCollection& SequenceableCollection::insertAt(int i, int x) {
 
 // Shift elements to the left to make space for a new element at a lower index
 void SequenceableCollection::leftShift(int i) {
-    if (_start == 0) {
-        // If already at the start, can't shift left, call grow instead
-        grow();
-        return;
+    // Only shift if there is space at the start
+    if (_start > 0) {
+        // Shift elements one position to the left
+        for (int j = _start - 1; j < _start + i; ++j) {
+            region[j] = region[j + 1];
+        }
+        _start--; // Adjust _start after left shift
+    } else {
+        std::cout << "No space on the left to shift elements." << std::endl;
     }
-
-    // Shift elements one position to the left
-    for (int j = _start - 1; j < _start + i; ++j) {
-        region[j] = region[j + 1];
-    }
-
-    // Update the starting index after the shift
-    _start--;
 }
 
 // Shift elements to the right to make space for a new element at a higher index
 void SequenceableCollection::rightShift(int i) {
-    if (_end == _basicSize - 1) {
-        // If already at the end, can't shift right, call grow instead
-        grow();
-        return;
+    // Only shift if there is space at the end
+    if (_end < _basicSize - 1) {
+        // Shift elements one position to the right
+        for (int j = _end + 1; j > _start + i; --j) {
+            region[j] = region[j - 1];
+        }
+        _end++; // Adjust _end after right shift
+    } else {
+        std::cout << "No space on the right to shift elements." << std::endl;
     }
-
-    // Shift elements one position to the right
-    for (int j = _end + 1; j > _start + i; --j) {
-        region[j] = region[j - 1];
-    }
-
-    // Update the ending index after the shift
-    _end++;
 }
 
 
