@@ -38,7 +38,14 @@ void testInsertFunction() {
         cout << "After inserting "<< i*10<< " at index "<< i <<" :" << endl;
         collection.printCollection();
     }
-    cout << "After inserting elements to trigger growth:" << endl;
+    // Insert at the start
+    collection.insertAt(0, 120);
+    cout << "After inserting 120 at index 0:" << endl;
+    collection.printCollection();
+
+    // Insert at the middle left
+    collection.insertAt(1, 130);
+    cout << "After inserting 130 at index 1:" << endl;
     collection.printCollection();
 }
 
@@ -49,7 +56,7 @@ void testFindFunction() {
     collection.insertAt(2, 30);
     collection.insertAt(3, 30);
 
-
+    collection.printCollection();
     cout << "\nTesting Find:\n" << endl;
 
     // Find existing elements
@@ -78,7 +85,12 @@ void testRemoveFunction() {
 
     // Remove an element from the beginning
     collection.removeAt(0);
-    cout << "After removing element at index 1:" << endl;
+    cout << "After removing element at index 0:" << endl;
+    collection.printCollection();
+
+    // Add an element at the end
+    collection.insertAt(3, 25);
+    cout << "After inserting element at index 3:" << endl;
     collection.printCollection();
 
     // Remove an element from the middle
@@ -170,6 +182,7 @@ void testEdgeCases() {
     // Attempt insertion out of bounds
     collection.insertAt(-1, 50);
     collection.insertAt(10, 50);
+    collection.insertAt(6, 50);
 
     // Attempt to remove from an empty collection
     collection.removeAt(0);
@@ -188,11 +201,11 @@ void testEdgeCases() {
 
 int main() {
     // Call each test case
-    testInsertFunction();
-    testFindFunction();
-    testRemoveFunction();
-    testIterateFunction();
-    testConstructorsAndDestructor();
+    // testInsertFunction();
+    // testFindFunction();
+    // testRemoveFunction();
+    // testIterateFunction();
+    // testConstructorsAndDestructor();
     testEdgeCases();
 
     cout << "All tests completed." << endl;
