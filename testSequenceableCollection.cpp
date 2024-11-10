@@ -1,5 +1,6 @@
 #include "SequenceableCollection.h"
 #include <iostream>
+using namespace std;
 
 void testInsertFunction() {
     SequenceableCollection collection;
@@ -116,6 +117,51 @@ void testIterateFunction() {
     collection.printCollection();
 }
 
+void testConstructorsAndDestructor() {
+    cout << "Testing Default Constructor:" << endl;
+    {
+        SequenceableCollection collection;
+        collection.printCollection();
+        // Expected: _start = 3, _end = 2, _size = 0, array is empty
+    }
+
+    cout << "\nTesting Constructor with Initial Element:" << endl;
+    {
+        SequenceableCollection collectionWithElement(10);  // Initialize with 10
+        collectionWithElement.printCollection();
+        // Expected: _start = 3, _end = 3, _size = 1, array contains 10 at _start position
+    }
+
+    cout << "\nTesting Copy Constructor:" << endl;
+    {
+        SequenceableCollection originalCollection;
+        originalCollection.insertAt(0, 5).insertAt(1, 15).insertAt(2, 25);
+        cout << "Original Collection:" << endl;
+        originalCollection.printCollection();
+
+        // Copy the original collection
+        SequenceableCollection copiedCollection(originalCollection);
+        cout << "Copied Collection:" << endl;
+        copiedCollection.printCollection();
+        // Expected: copiedCollection has the same values as originalCollection
+
+        // Modify the copied collection and verify that the original is unchanged
+        copiedCollection.insertAt(3, 35);
+        cout << "After modifying Copied Collection:" << endl;
+        copiedCollection.printCollection();
+
+        cout << "Original Collection should remain unchanged:" << endl;
+        originalCollection.printCollection();
+        // Expected: originalCollection still has the original values
+    }
+
+    cout << "\nTesting Destructor indirectly with dynamic allocation:" << endl;
+    SequenceableCollection* dynamicCollection = new SequenceableCollection(20);
+    dynamicCollection->printCollection();
+    delete dynamicCollection;  // Destructor should be called here without leaks
+    cout << "Destructor tested via delete of dynamically allocated object." << endl;
+}
+
 void testEdgeCases() {
     SequenceableCollection collection;
 
@@ -142,10 +188,11 @@ void testEdgeCases() {
 
 int main() {
     // Call each test case
-    // testInsertFunction();
-    // testFindFunction();
-    // testRemoveFunction();
-    // testIterateFunction();
+    testInsertFunction();
+    testFindFunction();
+    testRemoveFunction();
+    testIterateFunction();
+    testConstructorsAndDestructor();
     testEdgeCases();
 
     std::cout << "All tests completed." << std::endl;
