@@ -11,12 +11,12 @@ This project implements a SequenceableCollection class in C++, designed to store
 2.	Contiguous Storage Requirement: Ensures that all elements are stored consecutively within the allocated memory region.
 3.	Efficient Insertions and Deletions: Supports inserting elements at any position and removing elements with minimal shifting.
 4.	Functionality:
-        **•	basicSize():** Returns the total allocated capacity.
-        **•	size():** Returns the current number of elements stored in the collection.
-        **•	insertAt(int i, int x):** Inserts an integer x at position i, shifting elements as needed. If the array is full, it doubles the capacity before inserting.
-        **•	find(int x):** Returns the index of an integer x in the collection or -1 if not found.
-        **•	removeAt(int i):** Removes the element at position i, filling the gap by shifting elements.
-        **•	iterate(int (*fn)(int)):*** Applies a function fn to each element, replacing each element with the function’s return value.
+    **•	basicSize():** Returns the total allocated capacity.
+    **•	size():** Returns the current number of elements stored in the collection.
+    **•	insertAt(int i, int x):** Inserts an integer x at position i, shifting elements as needed. If the array is full, it doubles the capacity before inserting.
+    **•	find(int x):** Returns the index of an integer x in the collection or -1 if not found.
+    **•	removeAt(int i):** Removes the element at position i, filling the gap by shifting elements.
+    **•	iterate(int (*fn)(int)):*** Applies a function fn to each element, replacing each element with the function’s return value.
 5.	Constructors and Destructor:
         •	Default, copy, and parameterized constructors are implemented.
         •	Destructor frees all allocated memory, preventing memory leaks.
