@@ -1,4 +1,4 @@
-#include "SequenceableCollection.h"
+#include "../include/SequenceableCollection.h"
 #include <iostream>
 using namespace std;
 
@@ -201,11 +201,11 @@ void testEdgeCases() {
 
 int main() {
     // Call each test case
-    // testInsertFunction();
-    // testFindFunction();
-    // testRemoveFunction();
-    // testIterateFunction();
-    // testConstructorsAndDestructor();
+    testInsertFunction();
+    testFindFunction();
+    testRemoveFunction();
+    testIterateFunction();
+    testConstructorsAndDestructor();
     testEdgeCases();
 
     cout << "All tests completed." << endl;

@@ -1,4 +1,4 @@
-#include "SequenceableCollection.h"
+#include "../include/SequenceableCollection.h"
 #include <iostream>
 using namespace std;
 
@@ -47,7 +47,7 @@ int SequenceableCollection::size() const {
 // Insert x at specified index, shifting elements as needed
 SequenceableCollection& SequenceableCollection::insertAt(int i, int x) {
     if (i < 0 || i > _end - _start + 1) {
-        std::cout << "......Index is out of bounds....." << std::endl;
+        cout << "......Index is out of bounds....." << endl;
         return *this;
     }
 
@@ -131,7 +131,7 @@ void SequenceableCollection::leftShift(int i) {
         }
         _start--; // Adjust _start after left shift
     } else {
-        std::cout << "No space on the left to shift elements." << std::endl;
+        cout << "No space on the left to shift elements." << endl;
     }
 }
 
@@ -145,7 +145,7 @@ void SequenceableCollection::rightShift(int i) {
         }
         _end++; // Adjust _end after right shift
     } else {
-        std::cout << "No space on the right to shift elements." << std::endl;
+        cout << "No space on the right to shift elements." << endl;
     }
 }
 
@@ -179,7 +179,7 @@ int SequenceableCollection::find(int x) const {
 SequenceableCollection& SequenceableCollection::removeAt(int i) {
      // Check if index i is within bounds
     if (i < 0 || i >= _end - _start + 1) {
-        std::cout << "Index out of bounds. No element removed." << std::endl;
+        cout << "Index out of bounds. No element removed." << endl;
         return *this;  // No action if index is out of bounds
     }
 
@@ -228,29 +228,29 @@ SequenceableCollection& SequenceableCollection::iterate(int (*fn)(int)) {
 }
 
 void SequenceableCollection::printCollection() {
-    std::cout << "\n" << std::endl;
+    cout << "\n" << endl;
 
-    std::cout << "Start index (_start): " << _start << std::endl;
-    std::cout << "End index (_end): " << _end << std::endl;
-    std::cout << "Current size (_size): " << _size << std::endl;
-    std::cout << "Total capacity (_basicSize): " << _basicSize << std::endl;
+    cout << "Start index (_start): " << _start << endl;
+    cout << "End index (_end): " << _end << endl;
+    cout << "Current size (_size): " << _size << endl;
+    cout << "Total capacity (_basicSize): " << _basicSize << endl;
 
-    std::cout << "\n" << std::endl;
+    cout << "\n" << endl;
 
-    std::cout << "Indices" << std::endl;
-    std::cout << "[";
+    cout << "Indices" << endl;
+    cout << "[";
     for (int z = 0; z < _basicSize; ++z) {
-        std::cout << z << "\t";
+        cout << z << "\t";
     }
-    std::cout << "]" << std::endl;
+    cout << "]" << endl;
 
-    std::cout << "Values" << std::endl;
-    std::cout << "[";
+    cout << "Values" << endl;
+    cout << "[";
     for (int z = 0; z < _basicSize; ++z) {
-        std::cout << region[z] << "\t";
+        cout << region[z] << "\t";
     }
-    std::cout << "]" << std::endl;
+    cout << "]" << endl;
 
-    std::cout << "\n" << std::endl;
+    cout << "\n" << endl;
     
 }

@@ -24,7 +24,7 @@ This project implements a SequenceableCollection class in C++, designed to store
 
 **Project Structure**
 ```
-project/
+DynamicSeqCollection/
 ├── include/
 │   └── SequenceableCollection.h       # Header file for SequenceableCollection class
 ├── src/
@@ -38,13 +38,13 @@ project/
 
 1.	Navigate to the Project Directory:
 ```
-        cd Monu_Kumar_mp3
+        cd DynamicSeqCollection
 ```
 
 2.	Compile the Code:
         Use the following command to compile the project, including both the implementation and test files. 
         ```
-        clang++ -std=c++11 SequenceableCollection.cpp testSequenceableCollection.cpp -o testSequenceableCollection
+        clang++ -std=c++11 src/SequenceableCollection.cpp tests/testSequenceableCollection.cpp -o testSequenceableCollection
         ```
     This will generate an executable file named testSequenceableCollection.
 
